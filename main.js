@@ -41,6 +41,13 @@ GeoSet.prototype.addSet = function(setName) {
   });
 };
 
+GeoSet.prototype.getSet = function(setName) {    
+  return new GeoSet({
+    zset: this.zset + ':' + setName,
+    parentGeoSet: this.parentGeoSet || this
+  });
+};
+
 GeoSet.prototype.deleteSet = function(setName, callBack) {
   this.getClientInterface().del(this.zset + ':' + setName, callBack);
 };
